@@ -1,2 +1,2 @@
-export * from './main-page'
-export * from './todo-page'
+export * from './select-project-page'
+export * from './project-page'
