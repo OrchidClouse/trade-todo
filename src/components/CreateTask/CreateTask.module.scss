@@ -1,0 +1,25 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	width: 300px;
+  }
+  
+  .input {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	justify-content: space-between;
+	gap: 0.5rem;
+  
+	label {
+	  font-weight: 500;
+	  margin-bottom: 0.3rem;
+	}
+  }
+  
+  @media (max-width: 600px) {
+	.form {
+	  width: 100%;
+	}
+}

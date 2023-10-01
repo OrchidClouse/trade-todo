@@ -355,9 +355,6 @@ export const tasksReducer = (
             }
           : task
       );
-      // console.log('preNewState: ', preNewState);
-      // console.log('deadDependencies: ', deadDependencies);
-      // console.log('newState: ', newState);
 
       return newState;
     }

@@ -1,0 +1,14 @@
+.searchButton{
+	background-color: #eee;
+	border: 1px solid #ccc;
+	border-radius: 12px;
+	height: 4em;
+	width: 4em;
+	transition: border-color 0.3s ease;
+	background-image: url('../../../public/magnifying-glass.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	&:hover {
+		border-color: #888;
+	}
+}

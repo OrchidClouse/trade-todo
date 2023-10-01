@@ -32,7 +32,7 @@ export const Modal: React.FC<IModalProps> = ({
         <div className={styles.header}>
           {title ? <div className={styles.title}>{title}</div> : null}
           <button className={styles.closeButton} onClick={onClose}>
-            {String.fromCharCode(10006)}
+            X
           </button>
         </div>
         {children}

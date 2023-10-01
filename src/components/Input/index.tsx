@@ -1,13 +1,15 @@
 import styles from './Input.module.scss'
 
 interface IInputProps{
-	type?: string,
-	placeholder?: string,
-	value?: string,
-	onBlur?: () => void,
-	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void,
-	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
-	disabled?: boolean
+	type?: string;
+	placeholder?: string;
+	value?: string;
+	onBlur?: () => void;
+	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	disabled?: boolean;
+	id?: string;
+	size?: 'small' | 'medium' | 'large';
   }
   
   export const Input: React.FC<IInputProps> = ({
@@ -17,11 +19,18 @@ interface IInputProps{
 	onBlur = () => {},
 	onKeyDown = (e) => {},
 	onChange = () => {},
-	disabled = false
+	disabled = false,
+	id = "",
+	size = 'default'
   }) => {
+	const sizeClass = {
+		small: styles.smallInput,
+		default: styles.defaultInput,
+		large: styles.largeInput,
+	}[size];
 
 	return (
-	  <input 
+	  <input
 		type={type}
 		placeholder={placeholder}
 		value={value}
@@ -29,7 +38,8 @@ interface IInputProps{
 		onKeyDown={onKeyDown}
 		onChange={onChange}
 		disabled={disabled}
-		className={`${styles.defaultInput}`}
+		className={sizeClass}
+		id={id}
 	  />
 	)
   }

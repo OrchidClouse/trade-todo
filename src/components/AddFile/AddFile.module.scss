@@ -1,0 +1,15 @@
+.fileItem {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 0.25rem;
+	background-color: #fff;
+	margin: 0.25rem;
+	padding: 0.5rem;
+	box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+	  rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.fileInput{
+	display: none;
+}

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {Helmet} from 'react-helmet'
 import styles from './index.module.scss'
-import { Input, Button, ProjectCard } from 'components'
+import { Input, Button, ProjectCard, HidingFilter } from 'components'
 import { useAppSelector, useAppDispatch } from 'hooks/reduxHooks'
 import { addProject } from 'store/projects/projectsActions'
 
@@ -46,33 +46,16 @@ export const SelectProjectPage = () => {
             />
           </div>
           <div className={`${styles.searchProjectInputContainer}`}>
-            {isSearchVisible ? (
-              <>
-                <h3>Enter a project name</h3>
-                <Input 
-                  value={filterValue}
-                  placeholder='Enter a project name'
-                  onChange={(e) => setFilterValue(e.target.value)}
-                  onBlur={() => setIsSearchVisible(false)}
-                  onKeyDown={(e) => {
-                    if(e.key === 'Enter') {
-                      setIsSearchVisible(false)
-                      setFilterValue("")
-                    }
-                  }}
-                />
-              </>
-            ) : (
-              <button 
-                className={`${styles.searchButton}`}
-                onClick={() => setIsSearchVisible(true)}
-              >
-                <img src='icons8-magnifying-glass.svg' alt='za....'/>
-              </button>
-            )}
+          <HidingFilter
+            title='Enter a project name'
+            placeholder='Enter project name'
+            isSearchVisible={isSearchVisible} 
+            filterValue={filterValue} 
+            setFilterValue={setFilterValue} 
+            setIsSearchVisible={setIsSearchVisible} 
+          />
           </div>
         </header>
-        <hr className={`${styles.separator}`} />
         <div className={`${styles.projectList}`}>
             {filteredProjects.map((project) => (
               <ProjectCard key={project.id} title={project.name} project={project}/>

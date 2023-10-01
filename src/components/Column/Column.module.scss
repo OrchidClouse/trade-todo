@@ -1,0 +1,46 @@
+.column {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	width: 300px;
+	padding: 1rem;
+	border-radius: 0.25rem;
+	background-color: rgb(247, 247, 247);
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	min-height: 300px;
+}
+  
+.header {
+	font-size: 20px;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	
+	button {
+	  width: 2rem;
+	  border-radius: 50%;
+	  aspect-ratio: 1/1;
+	}
+}
+
+.separator{
+	border-bottom: 1px solid;
+	border-color: #D1D1D1;
+}
+
+.addTaskButton{
+	font-size: 20px;
+	transition: transform 0.3s ease;
+	border: none;
+	background-color: #E2E2E2;
+	cursor: pointer;
+
+	&:hover {
+	  transform: scale(1.05);
+	}
+}
+
+.over {
+	background-color: white;
+}

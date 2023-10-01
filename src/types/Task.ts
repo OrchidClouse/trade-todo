@@ -14,6 +14,7 @@ export type Task = {
 };
 
 export enum Priority {
+  Priority0, //for correct display
   Priority1,
   Priority2,
   Priority3,

@@ -1,0 +1,55 @@
+.subtaskItem {
+	background-color: rgb(255, 255, 255);
+	box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+	padding: 0.5rem;
+	margin: 0.5rem 0;
+	border-radius: 0.25rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+  }
+  
+  .title {
+	display: flex;
+	gap: 1rem;
+  }
+  
+  .completedTaskTitle {
+	text-decoration: line-through;
+	overflow-wrap: break-word;
+	color: rgb(114, 114, 114);
+  }
+  
+  .buttons {
+	display: flex;
+	gap: 0.5rem;
+  }
+  
+  .changeTitleForm {
+	width: 100%;
+	display: flex;
+	align-items: center;
+  
+	input {
+	  width: 280px;
+	  margin-right: 1rem;
+	}
+}
+
+.addTaskForm {
+	width: 100%;
+  
+	input {
+	  width: 90%;
+	  margin: 0.5rem 0;
+	}
+}
+
+.subtaskTitle{
+	overflow-wrap: break-word;
+}
+  
+.formButtons {
+	display: flex;
+	gap: 1rem;
+}

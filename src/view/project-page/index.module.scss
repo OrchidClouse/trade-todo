@@ -1,3 +1,60 @@
-.test2{
-	text-decoration: underline;
+.container{
+	display: flex;
+	flex-direction: column;
+	
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 15px;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+	height: 8em;
+	background-color: #f0f1f1;
+	border-bottom: 1px solid #dee2e6;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		height: auto;
+		padding: 10px;
+	}
+  
+	h2 {
+	  font-size: 24px;
+	  color: #343a40;
+	}
+  
+}
+
+.columns {
+	display: flex;
+	margin-top: 20px;
+	padding: 0 30px;
+	justify-content: space-evenly;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+.redactButton{
+	background-color: #eee;
+	border: 1px solid #ccc;
+	border-radius: 12px;
+	height: 4em;
+	width: 4em;
+	transition: border-color 0.3s ease;
+	background-image: url('../../../public/redact-pencil.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 30px;
+	&:hover {
+		border-color: #888;
+	}
 }

@@ -2,10 +2,11 @@ import { Project } from '../../types/Project';
 import {
   AddProjectActionType,
   RemoveProjectActionType,
+  UpdateProjectActionType
 } from './projectsActions';
-import { ADD_PROJECT, REMOVE_PROJECT } from './projectsConsts';
+import { ADD_PROJECT, REMOVE_PROJECT, UPDATE_PROJECT } from './projectsConsts';
 
-type ProjectsActionsType = AddProjectActionType | RemoveProjectActionType;
+type ProjectsActionsType = AddProjectActionType | RemoveProjectActionType | UpdateProjectActionType;
 
 const projectsInitialState: Project[] = [];
 
@@ -27,6 +28,11 @@ export const projectsReducer = (
     }
     case REMOVE_PROJECT: {
       return state.filter((project) => project.id !== action.payload.id);
+    }
+    case UPDATE_PROJECT: {
+      return state.map((project) =>
+        project.id === action.payload.id ? { ...project, name: action.payload.name } : project
+      );
     }
     default: {
       return state;
