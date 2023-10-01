@@ -1,28 +1,27 @@
-import { MouseEvent, useState } from 'react';
-import { useAppDispatch, useAppSelector } from 'hooks/reduxHooks';
-import {
-  addReplyComment,
-  removeComment,
-} from 'store/tasks/tasksActions';
-import { selectReplyComments } from 'store/tasks/tasksSelectors';
-import { Comment } from 'types/Task';
-import styles from './Comment.module.scss';
-import { Button, Input } from 'components';
+import { MouseEvent, useState } from "react";
+import { useAppDispatch, useAppSelector } from "hooks/reduxHooks";
+import { addReplyComment, removeComment } from "store/tasks/tasksActions";
+import { selectReplyComments } from "store/tasks/tasksSelectors";
+import { Comment } from "types/Task";
+import styles from "./Comment.module.scss";
+import { Button, Input } from "components";
 
 interface ICommentItemProps {
   taskId: string;
   comment: Comment;
 }
 
-export const CommentItem: React.FC<ICommentItemProps> = ({ taskId, comment }) => {
-
+export const CommentItem: React.FC<ICommentItemProps> = ({
+  taskId,
+  comment,
+}) => {
   const dispatch = useAppDispatch();
 
   const [isReplyFormOpen, setIsReplyFormOpen] = useState(false);
-  const [reply, setReply] = useState('');
+  const [reply, setReply] = useState("");
 
   const replies = useAppSelector((state) =>
-    selectReplyComments(state, taskId, comment.id)
+    selectReplyComments(state, taskId, comment.id),
   );
 
   const handleOpenReplyForm = () => {
@@ -31,7 +30,7 @@ export const CommentItem: React.FC<ICommentItemProps> = ({ taskId, comment }) =>
 
   const handleCancelReplyCreation = (e: MouseEvent) => {
     e.preventDefault();
-    setReply('');
+    setReply("");
     setIsReplyFormOpen(false);
   };
 
@@ -43,9 +42,9 @@ export const CommentItem: React.FC<ICommentItemProps> = ({ taskId, comment }) =>
           taskId,
           parentId,
           text: reply,
-        })
+        }),
       );
-    setReply('');
+    setReply("");
     setIsReplyFormOpen(false);
   };
 
@@ -55,7 +54,7 @@ export const CommentItem: React.FC<ICommentItemProps> = ({ taskId, comment }) =>
       removeComment({
         taskId,
         commentId: comment.id,
-      })
+      }),
     );
   };
 
@@ -66,18 +65,18 @@ export const CommentItem: React.FC<ICommentItemProps> = ({ taskId, comment }) =>
           <div className={styles.content}>
             <span>{comment.text}</span>
             <div className={styles.buttons}>
-			  <Button 
-			  	size='small'
-				type='primary'
-				title='Reply'
-				onClick={handleOpenReplyForm}
-			  />
-			  <Button
-			  	size='small'
-				type='delete'
-				title='Remove'
-				onClick={handleRemoveComment}
-			  />
+              <Button
+                size="small"
+                type="primary"
+                title="Reply"
+                onClick={handleOpenReplyForm}
+              />
+              <Button
+                size="small"
+                type="delete"
+                title="Remove"
+                onClick={handleRemoveComment}
+              />
             </div>
           </div>
           {isReplyFormOpen ? (
@@ -85,7 +84,7 @@ export const CommentItem: React.FC<ICommentItemProps> = ({ taskId, comment }) =>
               className={`${styles.addReplyForm} ${styles.replies} ${styles.item}`}
             >
               <Input
-				size='small'
+                size="small"
                 onChange={(e) => {
                   setReply(e.currentTarget.value);
                 }}
@@ -93,19 +92,19 @@ export const CommentItem: React.FC<ICommentItemProps> = ({ taskId, comment }) =>
                 placeholder="What are your thoughts?"
               />
               <div className={styles.buttons}>
-				<Button 
-					size='small'
-					type='primary'
-					title='Reply'
-					onClick={(e) => handleAddReplyComment(e, comment.id)}
-					disabled={!reply}
-				/>
-				<Button
-					size='small'
-					type='delete'
-					title='Cancel'
-					onClick={handleCancelReplyCreation}
-				/>
+                <Button
+                  size="small"
+                  type="primary"
+                  title="Reply"
+                  onClick={(e) => handleAddReplyComment(e, comment.id)}
+                  disabled={!reply}
+                />
+                <Button
+                  size="small"
+                  type="delete"
+                  title="Cancel"
+                  onClick={handleCancelReplyCreation}
+                />
               </div>
             </form>
           ) : null}

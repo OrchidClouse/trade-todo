@@ -1,4 +1,4 @@
-import { MyFile, Priority, Status, Task } from '../../types/Task';
+import { MyFile, Priority, Status, Task } from "../../types/Task";
 import {
   ADD_SUBTASK,
   ADD_TASK,
@@ -15,11 +15,11 @@ import {
   ADD_FILE,
   CHANGE_TASK_PRIORITY,
   REMOVE_FILE,
-} from './tasksConsts';
+} from "./tasksConsts";
 
 type TaskInputData = Omit<
   Task,
-  'id' | 'creationDate' | 'developmentTime' | 'doneTime'
+  "id" | "creationDate" | "developmentTime" | "doneTime"
 >;
 
 export type AddTaskActionType = {
@@ -154,7 +154,7 @@ export const removeTask = (taskId: string): RemoveTaskActionType => ({
 
 export const changeTaskTitle = (
   taskId: string,
-  newTitle: string
+  newTitle: string,
 ): ChangeTaskTitleActionType => ({
   type: CHANGE_TASK_TITLE,
   payload: {
@@ -165,7 +165,7 @@ export const changeTaskTitle = (
 
 export const changeTaskStatus = (
   taskId: string,
-  newStatus: Status
+  newStatus: Status,
 ): ChangeTaskStatusActionType => ({
   type: CHANGE_TASK_STATUS,
   payload: {

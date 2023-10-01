@@ -1,5 +1,5 @@
-import {SelectProjectPage, ProjectPage} from "./view";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { SelectProjectPage, ProjectPage } from "./view";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 export const App = () => (
   <Router>
@@ -8,4 +8,4 @@ export const App = () => (
       <Route path="/project/:id" element={<ProjectPage />} />
     </Routes>
   </Router>
-)
+);

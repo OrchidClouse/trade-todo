@@ -1,5 +1,5 @@
-import { ReactNode, MouseEvent } from 'react';
-import styles from './Modal.module.scss';
+import { ReactNode, MouseEvent } from "react";
+import styles from "./Modal.module.scss";
 
 interface IModalProps {
   opened: boolean;
@@ -9,12 +9,11 @@ interface IModalProps {
 }
 
 export const Modal: React.FC<IModalProps> = ({
-	opened,
-	onClose = () => {},
-	title = '',
-	children
+  opened,
+  onClose = () => {},
+  title = "",
+  children,
 }) => {
-
   const handleAreaClick = (e: MouseEvent) => {
     onClose();
   };

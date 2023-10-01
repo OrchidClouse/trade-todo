@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import {
   closestCorners,
   defaultDropAnimation,
@@ -13,11 +13,15 @@ import {
   TouchSensor,
   useSensor,
   useSensors,
-} from '@dnd-kit/core';
-import { changeTaskStatus } from 'store/tasks/tasksActions';
-import { Status } from 'types/Task';
+} from "@dnd-kit/core";
+import { changeTaskStatus } from "store/tasks/tasksActions";
+import { Status } from "types/Task";
 
-export const useDndLogic = (projectTasks: any, task: any, setActiveTaskId: (id: string | null) => void) => {
+export const useDndLogic = (
+  projectTasks: any,
+  task: any,
+  setActiveTaskId: (id: string | null) => void,
+) => {
   const dispatch = useDispatch();
 
   const activationConstraint: PointerActivationConstraint = {
@@ -27,7 +31,7 @@ export const useDndLogic = (projectTasks: any, task: any, setActiveTaskId: (id: 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint }),
     useSensor(TouchSensor),
-    useSensor(KeyboardSensor)
+    useSensor(KeyboardSensor),
   );
 
   const handleDragStart = ({ active }: DragStartEvent) => {
@@ -52,8 +56,8 @@ export const useDndLogic = (projectTasks: any, task: any, setActiveTaskId: (id: 
     handleDragStart,
     handleDragEnd,
     dropAnimation,
-	closestCorners,
-	DragOverlay,
-	DndContext
+    closestCorners,
+    DragOverlay,
+    DndContext,
   };
 };

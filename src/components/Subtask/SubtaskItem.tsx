@@ -1,21 +1,23 @@
-import { useState, MouseEvent } from 'react';
-import styles from './Subtask.module.scss';
-import { useAppDispatch } from 'hooks/reduxHooks';
+import { useState, MouseEvent } from "react";
+import styles from "./Subtask.module.scss";
+import { useAppDispatch } from "hooks/reduxHooks";
 import {
   changeSubtaskStatus,
   changeSubtaskTitle,
   removeSubtask,
-} from 'store/tasks/tasksActions';
-import { Input, Button } from 'components';
-import { Subtask } from 'types/Task';
+} from "store/tasks/tasksActions";
+import { Input, Button } from "components";
+import { Subtask } from "types/Task";
 
 interface ISubtaskItemProps {
   subtask: Subtask;
   taskId: string;
 }
 
-export const SubtaskItem: React.FC<ISubtaskItemProps> = ({ subtask, taskId }) => {
-
+export const SubtaskItem: React.FC<ISubtaskItemProps> = ({
+  subtask,
+  taskId,
+}) => {
   const dispatch = useAppDispatch();
 
   const [isChangeTitleInputOpen, setIsChangeTitleInputOpen] = useState(false);
@@ -26,7 +28,7 @@ export const SubtaskItem: React.FC<ISubtaskItemProps> = ({ subtask, taskId }) =>
       changeSubtaskStatus({
         taskId,
         subtaskId: subtask.id,
-      })
+      }),
     );
   };
 
@@ -39,7 +41,7 @@ export const SubtaskItem: React.FC<ISubtaskItemProps> = ({ subtask, taskId }) =>
       removeSubtask({
         taskId,
         subtaskId: subtask.id,
-      })
+      }),
     );
   };
 
@@ -55,7 +57,7 @@ export const SubtaskItem: React.FC<ISubtaskItemProps> = ({ subtask, taskId }) =>
         taskId,
         subtaskId: subtask.id,
         title: newTitle,
-      })
+      }),
     );
     handleCancelEditSubtaskTitle(e);
   };
@@ -71,47 +73,51 @@ export const SubtaskItem: React.FC<ISubtaskItemProps> = ({ subtask, taskId }) =>
         {isChangeTitleInputOpen ? (
           <form className={styles.changeTitleForm}>
             <Input
-			  size='small'
+              size="small"
               value={newTitle}
               onChange={(e) => {
                 setNewTitle(e.target.value);
               }}
             />
             <div className={styles.buttons}>
-			  <Button
-				type='primary'
-				title='Apply'
-				size='small'
-				onClick={handleApplySubtaskTittleChange}
-			  />
-			  <Button 
-			  	type='delete'
-				title='Cancel'
-				size='small'
-				onClick={handleCancelEditSubtaskTitle}
-			  />
+              <Button
+                type="primary"
+                title="Apply"
+                size="small"
+                onClick={handleApplySubtaskTittleChange}
+              />
+              <Button
+                type="delete"
+                title="Cancel"
+                size="small"
+                onClick={handleCancelEditSubtaskTitle}
+              />
             </div>
           </form>
         ) : (
-          <div className={subtask.status ? styles.completedTaskTitle : styles.subtaskTitle}>
+          <div
+            className={
+              subtask.status ? styles.completedTaskTitle : styles.subtaskTitle
+            }
+          >
             {subtask.title}
           </div>
         )}
       </div>
       {!isChangeTitleInputOpen ? (
         <div className={styles.buttons}>
-		  <Button
-				type='primary'
-				title='Change'
-				size='small'
-				onClick={handleChangeSubtaskTittle}
-			  />
-			  <Button 
-			  	type='delete'
-				title='Delete'
-				size='small'
-				onClick={handleRemoveSubtask}
-			  />
+          <Button
+            type="primary"
+            title="Change"
+            size="small"
+            onClick={handleChangeSubtaskTittle}
+          />
+          <Button
+            type="delete"
+            title="Delete"
+            size="small"
+            onClick={handleRemoveSubtask}
+          />
         </div>
       ) : null}
     </div>

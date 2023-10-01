@@ -1,22 +1,24 @@
-import { useState } from 'react';
-import { Task } from 'types/Task';
-import { Modal, TaskControl } from 'components';
-import { DraggableTask } from './DraggableTask';
-import styles from './TaskItem.module.scss'
+import { useState } from "react";
+import { Task } from "types/Task";
+import { Modal, TaskControl } from "components";
+import { DraggableTask } from "./DraggableTask";
+import styles from "./TaskItem.module.scss";
 
 interface ITaskItemProps {
   task: Task;
 }
 
-export const TaskItem: React.FC<ITaskItemProps> = ({task}) => {
-  
+export const TaskItem: React.FC<ITaskItemProps> = ({ task }) => {
   const [isTaskDetailsOpen, setIsTaskDetailsOpen] = useState(false);
 
   return (
     <>
       <DraggableTask key={task.id} id={task.id.toString()}>
         <>
-          <div className={styles.item} onClick={() => setIsTaskDetailsOpen(true)}>
+          <div
+            className={styles.item}
+            onClick={() => setIsTaskDetailsOpen(true)}
+          >
             <h4>{task.title}</h4>
             <p>{task.description}</p>
             <br />

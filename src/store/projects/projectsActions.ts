@@ -1,4 +1,4 @@
-import { ADD_PROJECT, REMOVE_PROJECT, UPDATE_PROJECT } from './projectsConsts';
+import { ADD_PROJECT, REMOVE_PROJECT, UPDATE_PROJECT } from "./projectsConsts";
 
 export type AddProjectActionType = {
   type: typeof ADD_PROJECT;
@@ -36,7 +36,10 @@ export const removeProject = (id: string): RemoveProjectActionType => ({
   },
 });
 
-export const updateProject = (id: string, name: string): UpdateProjectActionType => ({
+export const updateProject = (
+  id: string,
+  name: string,
+): UpdateProjectActionType => ({
   type: UPDATE_PROJECT,
   payload: {
     id,

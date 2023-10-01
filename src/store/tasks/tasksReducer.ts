@@ -1,4 +1,4 @@
-import { Comment, Status, Task } from '../../types/Task';
+import { Comment, Status, Task } from "../../types/Task";
 import {
   AddTaskActionType,
   RemoveTaskActionType,
@@ -15,7 +15,7 @@ import {
   ChangeTaskTitleActionType,
   AddFileActionType,
   RemoveFileActionType,
-} from './tasksActions';
+} from "./tasksActions";
 import {
   ADD_COMMENT,
   ADD_FILE,
@@ -32,7 +32,7 @@ import {
   REMOVE_FILE,
   REMOVE_SUBTASK,
   REMOVE_TASK,
-} from './tasksConsts';
+} from "./tasksConsts";
 
 type TasksActionsType =
   | AddTaskActionType
@@ -55,7 +55,7 @@ const tasksInitialState: Task[] = [];
 
 export const tasksReducer = (
   state = tasksInitialState,
-  action: TasksActionsType
+  action: TasksActionsType,
 ) => {
   switch (action.type) {
     case ADD_TASK: {
@@ -67,8 +67,8 @@ export const tasksReducer = (
           description: action.payload.description,
           creationDate: new Date(),
           developmentStartTime:
-            action.payload.status === 'queue' ? undefined : new Date(),
-          doneTime: action.payload.status === 'done' ? new Date() : undefined,
+            action.payload.status === "queue" ? undefined : new Date(),
+          doneTime: action.payload.status === "done" ? new Date() : undefined,
           priority: action.payload.priority,
           attachedFiles: action.payload.attachedFiles,
           status: action.payload.status,
@@ -82,7 +82,7 @@ export const tasksReducer = (
     }
     case REMOVE_TASK: {
       const newState: Task[] = state.filter(
-        (task) => task.id !== action.payload.taskId
+        (task) => task.id !== action.payload.taskId,
       );
       return newState;
     }
@@ -93,7 +93,7 @@ export const tasksReducer = (
               ...task,
               title: action.payload.newTitle,
             }
-          : task
+          : task,
       );
       return newState;
     }
@@ -103,16 +103,16 @@ export const tasksReducer = (
           ? {
               ...task,
               developmentStartTime:
-                action.payload.newStatus === 'queue'
+                action.payload.newStatus === "queue"
                   ? undefined
                   : task.developmentStartTime
                   ? task.developmentStartTime
                   : new Date(),
               doneTime:
-                action.payload.newStatus === 'done' ? new Date() : undefined,
+                action.payload.newStatus === "done" ? new Date() : undefined,
               status: action.payload.newStatus,
             }
-          : task
+          : task,
       );
 
       return newState;
@@ -124,7 +124,7 @@ export const tasksReducer = (
               ...task,
               description: action.payload.newDescription,
             }
-          : task
+          : task,
       );
 
       return newState;
@@ -136,7 +136,7 @@ export const tasksReducer = (
               ...task,
               priority: action.payload.newPriority,
             }
-          : task
+          : task,
       );
 
       return newState;
@@ -155,7 +155,7 @@ export const tasksReducer = (
                 },
               ],
             }
-          : task
+          : task,
       );
 
       return newState;
@@ -177,7 +177,7 @@ export const tasksReducer = (
                 }),
               ],
             }
-          : task
+          : task,
       );
       return newState;
     }
@@ -188,11 +188,11 @@ export const tasksReducer = (
               ...task,
               subtasks: [
                 ...task.subtasks.filter(
-                  (subtask) => subtask.id !== action.payload.subtaskId
+                  (subtask) => subtask.id !== action.payload.subtaskId,
                 ),
               ],
             }
-          : task
+          : task,
       );
 
       return newState;
@@ -214,7 +214,7 @@ export const tasksReducer = (
                 }),
               ],
             }
-          : task
+          : task,
       );
       return newState;
     }
@@ -231,7 +231,7 @@ export const tasksReducer = (
                 },
               ],
             }
-          : task
+          : task,
       );
 
       return newState;
@@ -251,7 +251,7 @@ export const tasksReducer = (
                 },
               ],
             }
-          : task
+          : task,
       );
 
       return newState;
@@ -260,12 +260,12 @@ export const tasksReducer = (
       const task = state.find((task) => task.id === action.payload.taskId);
 
       const deletingComment = task?.comments.find(
-        (comment) => comment.id === action.payload.commentId
+        (comment) => comment.id === action.payload.commentId,
       );
 
       const findDependentItems = (
         task: Task,
-        dependencyComment: Comment
+        dependencyComment: Comment,
       ): Comment[] => {
         const dependentItems: Comment[] = [];
 
@@ -282,12 +282,12 @@ export const tasksReducer = (
 
       const findDeadDependencies = (
         task: Task,
-        dependentComment: Comment
+        dependentComment: Comment,
       ): Comment[] => {
         const dependencies: Comment[] = [];
 
         task.comments.forEach((comment) => {
-          if (comment.id === dependentComment.parentId && comment.text === '') {
+          if (comment.id === dependentComment.parentId && comment.text === "") {
             dependencies.push(comment);
             const nextDependency = findDeadDependencies(task, comment);
             nextDependency.forEach((dep) => dependencies.push(dep));
@@ -303,10 +303,10 @@ export const tasksReducer = (
               (maybeDeadDependency) => {
                 return (
                   findDependentItems(task, maybeDeadDependency).filter(
-                    (dep) => dep.id !== deletingComment.id && dep.text !== ''
+                    (dep) => dep.id !== deletingComment.id && dep.text !== "",
                   ).length < 1
                 );
-              }
+              },
             )
           : null;
 
@@ -316,7 +316,7 @@ export const tasksReducer = (
           : null;
 
       const dependentComments = commentReplies?.filter(
-        (reply) => reply.text !== ''
+        (reply) => reply.text !== "",
       );
 
       const preNewState = state.map((task) =>
@@ -327,20 +327,20 @@ export const tasksReducer = (
                 .filter(
                   (comment) =>
                     comment.id !== action.payload.commentId ||
-                    dependentComments?.length
+                    dependentComments?.length,
                 )
                 .map((comment) => {
                   if (comment.id === action.payload.commentId) {
                     return {
                       ...comment,
-                      text: '',
+                      text: "",
                     };
                   }
 
                   return comment;
                 }),
             }
-          : task
+          : task,
       );
 
       const newState = preNewState.map((task) =>
@@ -350,10 +350,10 @@ export const tasksReducer = (
               comments: task.comments.filter(
                 (comment) =>
                   !deadDependencies?.includes(comment) ||
-                  dependentComments?.length
+                  dependentComments?.length,
               ),
             }
-          : task
+          : task,
       );
 
       return newState;
@@ -365,7 +365,7 @@ export const tasksReducer = (
               ...task,
               attachedFiles: task.attachedFiles.concat(action.payload.file),
             }
-          : task
+          : task,
       );
 
       return newState;
@@ -376,10 +376,10 @@ export const tasksReducer = (
           ? {
               ...task,
               attachedFiles: task.attachedFiles.filter(
-                (file) => file.id !== action.payload.fileId
+                (file) => file.id !== action.payload.fileId,
               ),
             }
-          : task
+          : task,
       );
 
       return newState;

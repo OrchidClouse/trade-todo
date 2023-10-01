@@ -1,6 +1,6 @@
-import { createStore } from 'redux';
-import { loadState, saveState } from './localStorage';
-import { rootReducer } from './rootReducer';
+import { createStore } from "redux";
+import { loadState, saveState } from "./localStorage";
+import { rootReducer } from "./rootReducer";
 
 export const configureStore = () => {
   const persistedState = loadState();
@@ -10,7 +10,7 @@ export const configureStore = () => {
     saveState({
       projects: store.getState().projects,
       tasks: store.getState().tasks,
-    })
+    }),
   );
 
   return store;

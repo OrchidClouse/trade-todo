@@ -1,2 +1,2 @@
-export * from './select-project-page'
-export * from './project-page'
+export * from "./select-project-page";
+export * from "./project-page";

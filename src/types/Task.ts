@@ -14,14 +14,14 @@ export type Task = {
 };
 
 export enum Priority {
-  Priority0, //for correct display
+  Priority0, // for correct display
   Priority1,
   Priority2,
   Priority3,
   Priority4,
 }
 
-export type Status = 'queue' | 'development' | 'done';
+export type Status = "queue" | "development" | "done";
 
 export type Subtask = {
   id: string;

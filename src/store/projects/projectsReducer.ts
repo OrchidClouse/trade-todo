@@ -1,18 +1,21 @@
-import { Project } from '../../types/Project';
+import { Project } from "../../types/Project";
 import {
   AddProjectActionType,
   RemoveProjectActionType,
-  UpdateProjectActionType
-} from './projectsActions';
-import { ADD_PROJECT, REMOVE_PROJECT, UPDATE_PROJECT } from './projectsConsts';
+  UpdateProjectActionType,
+} from "./projectsActions";
+import { ADD_PROJECT, REMOVE_PROJECT, UPDATE_PROJECT } from "./projectsConsts";
 
-type ProjectsActionsType = AddProjectActionType | RemoveProjectActionType | UpdateProjectActionType;
+type ProjectsActionsType =
+  | AddProjectActionType
+  | RemoveProjectActionType
+  | UpdateProjectActionType;
 
 const projectsInitialState: Project[] = [];
 
 export const projectsReducer = (
   state = projectsInitialState,
-  action: ProjectsActionsType
+  action: ProjectsActionsType,
 ) => {
   switch (action.type) {
     case ADD_PROJECT: {
@@ -31,7 +34,9 @@ export const projectsReducer = (
     }
     case UPDATE_PROJECT: {
       return state.map((project) =>
-        project.id === action.payload.id ? { ...project, name: action.payload.name } : project
+        project.id === action.payload.id
+          ? { ...project, name: action.payload.name }
+          : project,
       );
     }
     default: {
